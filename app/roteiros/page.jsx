@@ -84,7 +84,7 @@ export default function RoteirosPage() {
     }
   }
 
-  // Gera uma versão corrigida ajustando os pontos apontados pela verificação da OAB.
+  // Gera uma versão corrigida ajustando os pontos apontados pelo selo de qualidade.
   async function fixOab(id) {
     setFixBusy(id);
     setMsg("");
@@ -288,7 +288,7 @@ export default function RoteirosPage() {
                             }}
                             disabled={busy}
                             className="rounded-full px-4 py-2 text-sm font-semibold text-cream disabled:opacity-60"
-                            style={{ backgroundColor: "#B23A3A", color: "#FFE9E9" }}
+                            style={{ backgroundColor: "#8a2d2d" }}
                           >
                             Confirmar
                           </button>
@@ -308,6 +308,7 @@ export default function RoteirosPage() {
                         </button>
                       )}
                     </div>
+
 
                     {(d.oabConforme === true || d.oabConforme === false) && (
                       <OabResult
@@ -436,9 +437,9 @@ function OabResult({ draft, canFix, fixing, onFix }) {
       <div className="mt-3">
         <span
           className="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium"
-          style={{ backgroundColor: "#0E2B1C", color: "#8CE0B0" }}
+          style={{ backgroundColor: "#E6EFEA", color: "#1B4332" }}
         >
-          OAB: conforme · conferência automática
+          Selo de qualidade: aprovado · conferência automática
         </span>
       </div>
     );
@@ -454,9 +455,9 @@ function OabResult({ draft, canFix, fixing, onFix }) {
   return (
     <div
       className="mt-3 rounded-xl border px-4 py-3 text-sm"
-      style={{ backgroundColor: "#241B07", borderColor: "#8A6A24", color: "#E8C56F" }}
+      style={{ backgroundColor: "#FBF3E0", borderColor: "#C9A961", color: "#7a531f" }}
     >
-      <p className="font-semibold">Atenção — vale revisar (OAB):</p>
+      <p className="font-semibold">Atenção — vale revisar:</p>
       {alertas.length > 0 ? (
         <ul className="mt-2 space-y-2">
           {alertas.map((a, i) => (
