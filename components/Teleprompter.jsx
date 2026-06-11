@@ -97,28 +97,28 @@ export function Teleprompter({ hook, script, onClose }) {
 
   const t = dark
     ? {
-        bg: "#0E211A",
-        text: "#EFE9DC",
-        hook: "#DCC07E",
-        panel: "#13271D",
-        line: "rgba(201,169,97,0.22)",
-        track: "rgba(239,233,220,0.18)",
-        ghostBorder: "rgba(239,233,220,0.22)",
-        ghostText: "#EFE9DC",
-        playBg: "#C9A961",
-        playIcon: "#0E211A",
+        bg: "#070D1A",
+        text: "#D9E4F5",
+        hook: "#8FBCF7",
+        panel: "#0E1830",
+        line: "rgba(127,174,242,0.22)",
+        track: "rgba(217,228,245,0.18)",
+        ghostBorder: "rgba(217,228,245,0.22)",
+        ghostText: "#D9E4F5",
+        playBg: "#3E7BD6",
+        playIcon: "#FFFFFF",
       }
     : {
-        bg: "#F5F0E8",
-        text: "#2A241E",
-        hook: "#9C6B2E",
-        panel: "#FBF9F4",
-        line: "rgba(176,125,58,0.3)",
-        track: "rgba(42,36,30,0.14)",
-        ghostBorder: "#E0D6C4",
-        ghostText: "#1B4332",
-        playBg: "#1B4332",
-        playIcon: "#F5F0E8",
+        bg: "#E9F1FC",
+        text: "#122036",
+        hook: "#2E5FA3",
+        panel: "#F7FAFF",
+        line: "rgba(56,104,184,0.3)",
+        track: "rgba(18,32,54,0.14)",
+        ghostBorder: "#C5D7F0",
+        ghostText: "#1D3A66",
+        playBg: "#1D3A66",
+        playIcon: "#E9F1FC",
       };
 
   if (!mounted) return null;

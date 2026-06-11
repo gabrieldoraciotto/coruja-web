@@ -9,36 +9,22 @@ import { useState, useEffect, useMemo, useCallback } from "react";
 
 const API = process.env.NEXT_PUBLIC_API_URL || "";
 
-// Toda chamada do calendário leva a senha do escritório (mesma chave que o
-// lib/api usa). Num 401, avisa a tela de entrada (AuthGate) e ela reaparece.
-function authFetch(url, opts = {}) {
-  let key = "";
-  try {
-    key = localStorage.getItem("pj_key") || "";
-  } catch {}
-  return fetch(url, {
-    ...opts,
-    headers: { ...(opts.headers || {}), "x-app-key": key },
-  }).then((res) => {
-    if (res.status === 401 && typeof window !== "undefined") {
-      window.dispatchEvent(new Event("pj-auth"));
-    }
-    return res;
-  });
-}
 
+// Paleta Coruja (estúdio noturno). Os NOMES das chaves foram herdados do
+// projeto-mãe (green = azul de ação, gold = azul de destaque) para não tocar
+// em todos os usos abaixo.
 const C = {
-  bg: "#F5F0E8",
-  bgAlt: "#E8DCC8",
-  card: "#FBF9F4",
-  green: "#1B4332",
-  greenSoft: "#2D5A45",
-  gold: "#C9A961",
-  goldDark: "#B07D3A",
-  ink: "#2A241E",
-  muted: "#8A7F6E",
-  blockedBg: "#EDE6D8",
-  line: "#E0D6C4",
+  bg: "#0B1322",
+  bgAlt: "#22335A",
+  card: "#111C33",
+  green: "#3E7BD6",
+  greenSoft: "#6FA4E8",
+  gold: "#5A8FD9",
+  goldDark: "#8FBCF7",
+  ink: "#D9E4F5",
+  muted: "#7E92B8",
+  blockedBg: "#0F1830",
+  line: "#22335A",
 };
 
 const WEEKDAYS = [
@@ -69,7 +55,7 @@ function ymd(d) {
 function dateAtNoon(y, m, day) {
   return new Date(Date.UTC(y, m, day, 12, 0, 0));
 }
-const serif = { fontFamily: "Fraunces, Georgia, serif" };
+const serif = { fontFamily: "Space Grotesk, system-ui, sans-serif" };
 const sans = { fontFamily: "Mulish, system-ui, sans-serif" };
 
 export default function CalendarioPage() {
@@ -92,10 +78,10 @@ export default function CalendarioPage() {
   const loadAll = useCallback(async () => {
     try {
       const [s, q, cal, pend] = await Promise.all([
-        authFetch(`${API}/settings`).then((r) => r.json()),
-        authFetch(`${API}/drafts?status=aprovado`).then((r) => r.json()),
-        authFetch(`${API}/calendar`).then((r) => r.json()),
-        authFetch(`${API}/drafts?status=rascunho`).then((r) => r.json()),
+        fetch(`${API}/settings`).then((r) => r.json()),
+        fetch(`${API}/drafts?status=aprovado`).then((r) => r.json()),
+        fetch(`${API}/calendar`).then((r) => r.json()),
+        fetch(`${API}/drafts?status=rascunho`).then((r) => r.json()),
       ]);
       setCadenceDays(Array.isArray(s?.cadenceDays) ? s.cadenceDays : []);
       setQueue(Array.isArray(q) ? q : []);
@@ -123,7 +109,7 @@ export default function CalendarioPage() {
     if (!id || busy) return;
     setBusy(true);
     try {
-      const res = await authFetch(`${API}/drafts/${id}/schedule`, {
+      const res = await fetch(`${API}/drafts/${id}/schedule`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ date: dateStr }),
@@ -147,7 +133,7 @@ export default function CalendarioPage() {
     if (busy) return;
     setBusy(true);
     try {
-      await authFetch(`${API}/drafts/${id}/unschedule`, { method: "POST" });
+      await fetch(`${API}/drafts/${id}/unschedule`, { method: "POST" });
       setModal(null);
       await loadAll();
       setMsg({ type: "info", text: "Roteiro devolvido para a fila." });
@@ -160,7 +146,7 @@ export default function CalendarioPage() {
     if (busy) return;
     setBusy(true);
     try {
-      await authFetch(`${API}/drafts/${id}/publish`, { method: "POST" });
+      await fetch(`${API}/drafts/${id}/publish`, { method: "POST" });
       setModal(null);
       await loadAll();
       setMsg({ type: "info", text: "Roteiro marcado como publicado." });
@@ -172,7 +158,7 @@ export default function CalendarioPage() {
   async function saveCadence(newDays) {
     setSavingCadence(true);
     try {
-      const res = await authFetch(`${API}/settings`, {
+      const res = await fetch(`${API}/settings`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ cadenceDays: newDays }),
