@@ -14,14 +14,14 @@ const links = [
 export function Nav() {
   const path = usePathname();
   return (
-    <header className="border-b border-cream-deep/60 bg-forest text-cream">
+    <header className="border-b border-cream-deep/60 bg-cream-card text-ink">
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:py-4">
         <Link href="/" className="group flex items-baseline gap-3">
-          <span className="font-display text-xl tracking-tight text-cream">
-            Pauta<span className="text-gold"> Jurídica</span>
+          <span className="font-display text-xl tracking-tight text-forest">
+            Coruja<span className="text-gold-deep">.</span>
           </span>
-          <span className="hidden text-[11px] uppercase tracking-[0.2em] text-cream/50 sm:inline">
-            SR Advocacia
+          <span className="hidden text-[11px] uppercase tracking-[0.2em] text-muted sm:inline">
+            redação noturna
           </span>
         </Link>
         <nav className="flex flex-wrap items-center gap-1.5">
@@ -33,8 +33,8 @@ export function Nav() {
                 href={l.href}
                 className={`whitespace-nowrap rounded-full px-3.5 py-1.5 text-sm transition-colors ${
                   active
-                    ? "bg-gold/20 text-cream"
-                    : "text-cream/70 hover:bg-cream/10 hover:text-cream"
+                    ? "bg-gold/25 text-forest"
+                    : "text-muted hover:bg-cream-deep/40 hover:text-ink"
                 }`}
               >
                 {l.label}

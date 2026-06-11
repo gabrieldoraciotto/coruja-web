@@ -3,21 +3,21 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 body {
-  background-color: #f5f0e8;
-  /* textura sutil de papel: pontilhado quase imperceptível sobre o creme */
-  background-image: radial-gradient(rgba(42, 36, 30, 0.025) 1px, transparent 1px);
-  background-size: 22px 22px;
-  color: #2a241e;
+  background-color: #0b1322;
+  /* céu noturno: pontilhado de "estrelas" quase imperceptível sobre o azul-noite */
+  background-image: radial-gradient(rgba(147, 194, 253, 0.05) 1px, transparent 1px);
+  background-size: 26px 26px;
+  color: #d9e4f5;
 }
 
-/* filete dourado decorativo usado em títulos de seção */
+/* filete azul decorativo usado em títulos de seção (nome herdado do projeto-mãe) */
 .rule-gold {
   height: 2px;
-  background: linear-gradient(90deg, #c9a961, rgba(201, 169, 97, 0));
+  background: linear-gradient(90deg, #3868b8, rgba(56, 104, 184, 0));
 }
 
 /* aparição suave e escalonada no carregamento */
@@ -41,7 +41,7 @@ body {
   height: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d8cbb4;
+  background: #22335a;
   border-radius: 999px;
 }
 ::-webkit-scrollbar-track {

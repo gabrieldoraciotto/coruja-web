@@ -1,31 +1,33 @@
 import "./globals.css";
-import { Fraunces, Mulish } from "next/font/google";
+import { Space_Grotesk, Inter } from "next/font/google";
 import { Nav } from "@/components/Nav";
+import { DemoBanner } from "@/components/DemoBanner";
 
-// Display serifada e característica (títulos) — pega a pegada clássica da banca.
-const display = Fraunces({
+// Display geométrica e contemporânea (títulos) — a cara do estúdio noturno.
+const display = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-display",
 });
 
 // Corpo limpo e legível para a interface.
-const body = Mulish({
+const body = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-body",
 });
 
 export const metadata = {
-  title: "Pauta Jurídica — SR Advocacia",
-  description: "Calendário editorial de conteúdo previdenciário",
+  title: "Coruja — redação automática de conteúdo",
+  description:
+    "Da notícia ao roteiro pronto: triagem por IA, roteiros por formato e calendário editorial.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR" className={`${display.variable} ${body.variable}`}>
       <body className="font-body min-h-screen">
+        <DemoBanner />
         <Nav />
         <main className="mx-auto max-w-6xl px-5 pb-24 pt-8">{children}</main>
       </body>
