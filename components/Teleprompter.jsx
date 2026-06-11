@@ -1,7 +1,7 @@
 "use client";
 
-// Teleprompter em tela cheia, na identidade do escritório (verde profundo + creme +
-// dourado). Mostra o roteiro em letra grande rolando devagar, para a Dra. Sara ler
+// Teleprompter em tela cheia, no tema Coruja — azul-noite, azul-gelo e azul-médio.
+// Mostra o roteiro em letra grande rolando devagar, para a Dra. Sara ler
 // enquanto grava. Não fala com o backend — recebe o texto pronto via props.
 
 import { useEffect, useRef, useState } from "react";

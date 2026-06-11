@@ -1,6 +1,6 @@
 "use client";
 
-// Tela do Calendário editorial — Pauta Jurídica
+// Tela do Calendário editorial — Coruja
 // Agendamento manual: a Sara escolhe os dias da semana em que publica, e arrasta
 // (no computador) ou toca (no celular) os roteiros aprovados para os dias válidos.
 // Sem limite de roteiros por dia — só os dias da semana é que são restritos.

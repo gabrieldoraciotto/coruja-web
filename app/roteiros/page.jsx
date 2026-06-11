@@ -288,7 +288,7 @@ export default function RoteirosPage() {
                             }}
                             disabled={busy}
                             className="rounded-full px-4 py-2 text-sm font-semibold text-cream disabled:opacity-60"
-                            style={{ backgroundColor: "#8a2d2d" }}
+                            style={{ backgroundColor: "#B23A3A", color: "#FFE9E9" }}
                           >
                             Confirmar
                           </button>
@@ -436,7 +436,7 @@ function OabResult({ draft, canFix, fixing, onFix }) {
       <div className="mt-3">
         <span
           className="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium"
-          style={{ backgroundColor: "#E6EFEA", color: "#1B4332" }}
+          style={{ backgroundColor: "#0E2B1C", color: "#8CE0B0" }}
         >
           OAB: conforme · conferência automática
         </span>
@@ -454,7 +454,7 @@ function OabResult({ draft, canFix, fixing, onFix }) {
   return (
     <div
       className="mt-3 rounded-xl border px-4 py-3 text-sm"
-      style={{ backgroundColor: "#FBF3E0", borderColor: "#C9A961", color: "#7a531f" }}
+      style={{ backgroundColor: "#241B07", borderColor: "#8A6A24", color: "#E8C56F" }}
     >
       <p className="font-semibold">Atenção — vale revisar (OAB):</p>
       {alertas.length > 0 ? (
