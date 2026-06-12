@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { api } from "@/lib/api";
 import { SectionTitle, Button, Card, Badge, Empty } from "@/components/ui";
 
@@ -11,18 +11,29 @@ export default function NoticiasPage() {
   const [busyId, setBusyId] = useState(null);
   const [ingesting, setIngesting] = useState(false);
   const [msg, setMsg] = useState("");
+  const [pendentes, setPendentes] = useState(0); // notícias ainda em triagem
+  const pollRef = useRef(null);
 
   async function load() {
     setLoading(true);
     try {
       const data = await api.articles(filter || undefined);
       setArticles(data);
+      // Quantas ainda estão na fila da triagem? Enquanto houver, a lista se
+      // atualiza sozinha a cada poucos segundos.
+      const novos = await api.articles("novo");
+      setPendentes(novos.length);
+      if (pollRef.current) clearTimeout(pollRef.current);
+      if (novos.length > 0) pollRef.current = setTimeout(load, 7000);
     } catch (e) {
       setMsg(`Erro ao carregar: ${e.message}`);
     } finally {
       setLoading(false);
     }
   }
+
+  // Limpa o auto-atualizar ao sair da página.
+  useEffect(() => () => pollRef.current && clearTimeout(pollRef.current), []);
 
   useEffect(() => {
     load();
@@ -38,7 +49,7 @@ export default function NoticiasPage() {
       const n = r?.novas ?? 0;
       setMsg(
         n > 0
-          ? `${n} notícia(s) nova(s) coletada(s) e triada(s).`
+          ? `${n} notícia(s) coletada(s). A triagem roda em segundo plano — a lista atualiza sozinha.`
           : "Nenhuma notícia nova nos feeds agora."
       );
       await load();
@@ -103,6 +114,12 @@ export default function NoticiasPage() {
           </button>
         ))}
       </div>
+
+      {pendentes > 0 && (
+        <p className="mb-3 rounded-xl border border-gold/40 bg-gold/15 px-4 py-2 text-sm text-gold-deep">
+          {pendentes} notícia(s) em triagem — a lista atualiza sozinha em instantes.
+        </p>
+      )}
 
       {msg && (
         <p className="mb-5 rounded-xl border border-cream-deep bg-cream-card px-4 py-2 text-sm text-muted">
