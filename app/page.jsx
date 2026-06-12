@@ -1,7 +1,7 @@
 "use client";
 
 // Tela do Calendário editorial — Coruja
-// Agendamento manual: a Sara escolhe os dias da semana em que publica, e arrasta
+// Agendamento manual: o usuário escolhe os dias da semana em que publica, e arrasta
 // (no computador) ou toca (no celular) os roteiros aprovados para os dias válidos.
 // Sem limite de roteiros por dia — só os dias da semana é que são restritos.
 
@@ -42,7 +42,7 @@ const MONTHS = [
   "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro",
 ];
 
-// Máximo de dias da semana que a Sara pode marcar como dias de publicação.
+// Máximo de dias da semana que o usuário pode marcar como dias de publicação.
 const MAX_CADENCE_DAYS = 3;
 
 // ---- helpers de data (tudo em UTC meio-dia, igual ao backend, p/ não virar o dia) ----
