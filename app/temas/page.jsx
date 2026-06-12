@@ -75,7 +75,7 @@ export default function TemasPage() {
       const r = await api.setNiche(v);
       setNiche(r.niche);
       setNicheDraft(r.niche);
-      setMsg("Tema salvo — a fonte de notícias já acompanhou. Vá em Notícias e toque em Coletar.");
+      setMsg("Tema salvo — fonte atualizada e notícias do tema anterior limpas. Vá em Notícias e toque em Coletar.");
     } catch (e) {
       setMsg(`Não consegui salvar o tema: ${e.message}`);
     } finally {
